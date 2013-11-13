@@ -27,7 +27,7 @@
         <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="22" Margin="103,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="19,127,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="24" RenderTransformOrigin="0.494,0.476"/>
         <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Margin="103,129,0,0" VerticalAlignment="Top" Width="132" Height="22"/>
-        <Button Content="Apply" HorizontalAlignment="Left" Margin="103,160,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
+        <Button Content="Apply" HorizontalAlignment="Left" Margin="103,160,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="Button_Click"/>
 
     </Grid>
 </Controls:MetroWindow>

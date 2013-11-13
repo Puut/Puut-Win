@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using Puut.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,30 @@ namespace Puut
         {
             InitializeComponent();
 
+            LoadSettings();
+
             UpdateUserDataFields();
+        }
+
+        private void LoadSettings()
+        {
+            Settings s = Puut.Properties.Settings.Default;
+            urlTextBox.Text = s.ServerURL;
+            usesAuthCheckbox.IsChecked = s.UsesAuth;
+            usernameTextBox.Text = s.Username;
+            passwordTextBox.Password = SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(s.Password));
+            shortcutTextBox.Text = s.Shortcut;
+        }
+
+        private void SaveSettings()
+        {
+            Settings s = Puut.Properties.Settings.Default;
+            s.ServerURL = urlTextBox.Text;
+            s.UsesAuth = usesAuthCheckbox.IsChecked.Value;
+            s.Username = usernameTextBox.Text;
+            s.Password = SecurityUtility.EncryptString(passwordTextBox.SecurePassword);
+            s.Shortcut = shortcutTextBox.Text;
+            s.Save();
         }
 
         private void shortcutTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -88,6 +112,12 @@ namespace Puut
                 status = true;
             }
             usernameTextBox.IsEnabled = passwordTextBox.IsEnabled = status;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SaveSettings();
+            this.Close();
         }
 
         
