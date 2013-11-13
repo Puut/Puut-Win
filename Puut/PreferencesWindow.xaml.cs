@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,13 @@ namespace Puut
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            UpdateUserDataFields();
         }
 
         private void shortcutTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -66,5 +69,27 @@ namespace Puut
             // Update the text box.
             shortcutTextBox.Text = shortcutText.ToString();
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateUserDataFields();
+        }
+
+        private void usesAuthCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateUserDataFields();
+        }
+
+        private void UpdateUserDataFields()
+        {
+            Boolean status = false;
+            if (usesAuthCheckbox.IsChecked.Value)
+            {
+                status = true;
+            }
+            usernameTextBox.IsEnabled = passwordTextBox.IsEnabled = status;
+        }
+
+        
     }
 }

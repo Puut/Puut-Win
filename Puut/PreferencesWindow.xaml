@@ -1,19 +1,33 @@
-﻿<Window x:Class="Puut.MainWindow"
+﻿<Controls:MetroWindow x:Class="Puut.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Puut Preferences" Height="239" Width="280.25" ResizeMode="NoResize">
-    <Grid>
-        <TextBox x:Name="shortcutTextBox" HorizontalAlignment="Left" Height="22" Margin="103,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" TextChanged="shortcutTextBox_TextChanged" PreviewKeyDown="shortcutTextBox_PreviewKeyDown"/>
-        <Label Content="Shortcut:" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="25"/>
-
-        <TextBox x:Name="urlTextBox" HorizontalAlignment="Left" Height="22" Margin="103,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
-        <Label Content="Server URL:" HorizontalAlignment="Left" Margin="19,40,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="26"/>
-        <CheckBox Content="Server uses Auth" HorizontalAlignment="Left" Margin="103,70,0,0" VerticalAlignment="Top" Width="120" Height="16"/>
-        <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="22" Margin="103,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="19,90,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="24" RenderTransformOrigin="0.494,0.476"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="19,117,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="24" RenderTransformOrigin="0.494,0.476"/>
-        <Button Content="Apply" HorizontalAlignment="Left" Margin="103,162,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="103,119,0,0" VerticalAlignment="Top" Width="132" Height="22"/>
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Puut Preferences" 
+        Height="225"
+        Width="254.25"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="0,0,4,-19">
+        <Label Content="Shortcut:" HorizontalAlignment="Left" Margin="19,13,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="25"/>
+        <TextBox x:Name="shortcutTextBox" HorizontalAlignment="Left" Height="22" Margin="103,16,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" TextChanged="shortcutTextBox_TextChanged" PreviewKeyDown="shortcutTextBox_PreviewKeyDown"/>
+        <Label Content="Server URL:" HorizontalAlignment="Left" Margin="19,43,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="26"/>
+        <TextBox x:Name="urlTextBox" HorizontalAlignment="Left" Height="22" Margin="103,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
+        <CheckBox x:Name="usesAuthCheckbox" Content="Server uses Auth" HorizontalAlignment="Left" Margin="103,79,0,0" VerticalAlignment="Top" Width="120" Height="16" Checked="CheckBox_Checked" Unchecked="usesAuthCheckbox_Unchecked"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="24" RenderTransformOrigin="0.494,0.476"/>
+        <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="22" Margin="103,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="19,127,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="24" RenderTransformOrigin="0.494,0.476"/>
+        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Margin="103,129,0,0" VerticalAlignment="Top" Width="132" Height="22"/>
+        <Button Content="Apply" HorizontalAlignment="Left" Margin="103,160,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
 
     </Grid>
-</Window>
+</Controls:MetroWindow>
