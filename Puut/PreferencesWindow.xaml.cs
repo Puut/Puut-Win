@@ -108,11 +108,8 @@ namespace Puut
 
         private void UpdateUserDataFields()
         {
-            Boolean status = false;
-            if (usesAuthCheckbox.IsChecked.Value)
-            {
-                status = true;
-            }
+            bool status = (usesAuthCheckbox.IsChecked.Value);
+
             usernameTextBox.IsEnabled = passwordTextBox.IsEnabled = status;
         }
 
