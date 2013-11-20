@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Puut Preferences" 
-        Height="225"
-        Width="254.25"
+        Height="210"
+        Width="300"
         ResizeMode="NoResize" Icon="Images/puut.png">
     <Window.Resources>
         <ResourceDictionary>
@@ -17,17 +17,38 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="0,0,4,-19">
-        <Label Content="Shortcut:" HorizontalAlignment="Left" Margin="19,13,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="25"/>
-        <TextBox x:Name="shortcutTextBox" HorizontalAlignment="Left" Height="22" Margin="103,16,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" PreviewKeyDown="shortcutTextBox_PreviewKeyDown"/>
-        <Label Content="Server URL:" HorizontalAlignment="Left" Margin="19,43,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="26"/>
-        <TextBox x:Name="urlTextBox" HorizontalAlignment="Left" Height="22" Margin="103,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
-        <CheckBox x:Name="usesAuthCheckbox" Content="Server uses Auth" HorizontalAlignment="Left" Margin="103,79,0,0" VerticalAlignment="Top" Width="120" Height="16" Checked="CheckBox_Checked" Unchecked="usesAuthCheckbox_Unchecked"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="24" RenderTransformOrigin="0.494,0.476"/>
-        <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="22" Margin="103,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="19,127,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="24" RenderTransformOrigin="0.494,0.476"/>
-        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Margin="103,129,0,0" VerticalAlignment="Top" Width="132" Height="22"/>
-        <Button Content="Apply" HorizontalAlignment="Left" Margin="103,160,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="Button_Click"/>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="39" />
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Column="0" Grid.Row="0" Content="Shortcut:" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="shortcutTextBox" PreviewKeyDown="shortcutTextBox_PreviewKeyDown"/>
+        
+        <Label Grid.Column="0" Grid.Row="1" Content="Server URL:" VerticalContentAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="urlTextBox" />
+        
+        <!-- Auth -->
+        <CheckBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="6" Name="usesAuthCheckbox" Content="Server uses Auth" Checked="CheckBox_Checked" Unchecked="usesAuthCheckbox_Unchecked" HorizontalContentAlignment="Right"/>
+        
+        <Label Grid.Column="0" Grid.Row="3" Content="Username:" />
+        <TextBox Grid.Column="1" Grid.Row="3" x:Name="usernameTextBox" />
+        
+        <Label Grid.Column="0" Grid.Row="4" Content="Password:" />
+        <PasswordBox Grid.Column="1" Grid.Row="4" x:Name="passwordTextBox" />
+        
+        <!-- Apply -->
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="6" Content="Apply" Click="Button_Click"/>
 
     </Grid>
 </Controls:MetroWindow>
