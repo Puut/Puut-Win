@@ -13,5 +13,19 @@ namespace Puut
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            // only show preferences window if nothing is set yet (server url and/or shortcut)
+            if ( String.IsNullOrEmpty(Puut.Properties.Settings.Default.ServerURL) || String.IsNullOrEmpty(Puut.Properties.Settings.Default.Shortcut) )
+            {
+                this.ShowPreferenceWindow();
+            }
+        }
+
+        private void ShowPreferenceWindow()
+        {
+            PreferencesWindow window = new PreferencesWindow();
+            window.Show();
+        }
     }
 }
