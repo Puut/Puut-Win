@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants.cs" />
     <Compile Include="SecurityUtility.cs" />
     <Page Include="PreferencesWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
