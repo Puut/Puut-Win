@@ -24,8 +24,7 @@ namespace Puut
 
         private void ShowPreferenceWindow()
         {
-            PreferencesWindow window = new PreferencesWindow();
-            window.Show();
+            new PreferencesWindow().Show();
         }
     }
 }
