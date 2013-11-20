@@ -117,8 +117,6 @@ namespace Puut
         {
             SaveSettings();
             this.Close();
-        }
-
-        
+        } 
     }
 }
