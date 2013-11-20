@@ -22,6 +22,7 @@ namespace Puut
     /// </summary>
     public partial class PreferencesWindow : MetroWindow
     {
+        #region Init
         public PreferencesWindow()
         {
             InitializeComponent();
@@ -30,7 +31,9 @@ namespace Puut
 
             UpdateUserDataFields();
         }
+        #endregion
 
+        #region Load/Save
         private void LoadSettings()
         {
             Settings s = Puut.Properties.Settings.Default;
@@ -53,7 +56,9 @@ namespace Puut
             s.Shortcut = shortcutTextBox.Text;
             s.Save();
         }
+        #endregion
 
+        #region Event handlers for UI changes
         private void shortcutTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // The text box grabs all input.
@@ -107,10 +112,18 @@ namespace Puut
 
             usernameTextBox.IsEnabled = passwordTextBox.IsEnabled = status;
         }
+        #endregion
 
+        /// <summary>
+        /// Event handler for when the "apply" button had been pressed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">Event args.</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // save settings
             SaveSettings();
+            // and exit
             this.Close();
         } 
     }
