@@ -20,9 +20,9 @@ namespace Puut
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class PreferencesWindow : MetroWindow
     {
-        public MainWindow()
+        public PreferencesWindow()
         {
             InitializeComponent();
 
