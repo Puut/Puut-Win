@@ -34,6 +34,7 @@ namespace Puut
         private void LoadSettings()
         {
             Settings s = Puut.Properties.Settings.Default;
+
             urlTextBox.Text = s.ServerURL;
             usesAuthCheckbox.IsChecked = s.UsesAuth;
             usernameTextBox.Text = s.Username;
@@ -44,6 +45,7 @@ namespace Puut
         private void SaveSettings()
         {
             Settings s = Puut.Properties.Settings.Default;
+
             s.ServerURL = urlTextBox.Text;
             s.UsesAuth = usesAuthCheckbox.IsChecked.Value;
             s.Username = usernameTextBox.Text;
