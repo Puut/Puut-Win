@@ -19,7 +19,7 @@
     </Window.Resources>
     <Grid Margin="0,0,4,-19">
         <Label Content="Shortcut:" HorizontalAlignment="Left" Margin="19,13,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="25"/>
-        <TextBox x:Name="shortcutTextBox" HorizontalAlignment="Left" Height="22" Margin="103,16,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" TextChanged="shortcutTextBox_TextChanged" PreviewKeyDown="shortcutTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="shortcutTextBox" HorizontalAlignment="Left" Height="22" Margin="103,16,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" PreviewKeyDown="shortcutTextBox_PreviewKeyDown"/>
         <Label Content="Server URL:" HorizontalAlignment="Left" Margin="19,43,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="79" Height="26"/>
         <TextBox x:Name="urlTextBox" HorizontalAlignment="Left" Height="22" Margin="103,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132"/>
         <CheckBox x:Name="usesAuthCheckbox" Content="Server uses Auth" HorizontalAlignment="Left" Margin="103,79,0,0" VerticalAlignment="Top" Width="120" Height="16" Checked="CheckBox_Checked" Unchecked="usesAuthCheckbox_Unchecked"/>

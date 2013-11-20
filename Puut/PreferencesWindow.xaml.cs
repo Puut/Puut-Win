@@ -54,11 +54,6 @@ namespace Puut
             s.Save();
         }
 
-        private void shortcutTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void shortcutTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // The text box grabs all input.
