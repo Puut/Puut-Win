@@ -69,6 +69,19 @@ namespace Puut
         {
             this.UpdateUserDataFields();
         }
+        
+        /// <summary>
+        /// Event handler for when the "apply" button had been pressed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">Event args.</param>
+        private void buttonApply_Click(object sender, RoutedEventArgs e)
+        {
+            // save settings
+            SaveSettings();
+            // update ui
+            this.UpdateUserDataFields();
+        }
         #endregion
 
         #region UI
@@ -127,18 +140,5 @@ namespace Puut
             this.UpdateUserDataFields();
         }
         #endregion
-
-        /// <summary>
-        /// Event handler for when the "apply" button had been pressed.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">Event args.</param>
-        private void buttonApply_Click(object sender, RoutedEventArgs e)
-        {
-            // save settings
-            SaveSettings();
-            // update ui
-            this.UpdateUserDataFields();
-        }
     }
 }
