@@ -83,23 +83,45 @@ namespace Puut
 
             // Update the text box.
             shortcutTextBox.Text = shortcutText.ToString();
+
+            this.UpdateUserDataFields();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void urlTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            this.UpdateUserDataFields();
+        }
+        private void usesAuthCheckbox_Checked(object sender, RoutedEventArgs e)
         {
             UpdateUserDataFields();
         }
-
         private void usesAuthCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             UpdateUserDataFields();
         }
+        private void usernameTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            this.UpdateUserDataFields();
+        }
+        private void passwordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            this.UpdateUserDataFields();
+        }
 
         private void UpdateUserDataFields()
         {
-            bool status = (usesAuthCheckbox.IsChecked.Value);
+            Settings s = Puut.Properties.Settings.Default;
+            bool settingsChanged = false;
 
-            usernameTextBox.IsEnabled = passwordTextBox.IsEnabled = status;
+            usernameTextBox.IsEnabled = passwordTextBox.IsEnabled = ( usesAuthCheckbox.IsChecked.Value );
+
+            settingsChanged |= ( shortcutTextBox.Text != s.Shortcut );
+            settingsChanged |= ( urlTextBox.Text != s.ServerURL );
+            settingsChanged |= ( usesAuthCheckbox.IsChecked.Value != s.UsesAuth );
+            settingsChanged |= ( usernameTextBox.Text != s.Username );
+            settingsChanged |= ( passwordTextBox.Password != s.Password );
+
+            this.buttonApply.IsEnabled = settingsChanged;
         }
         #endregion
 
