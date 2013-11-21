@@ -35,13 +35,13 @@
         <TextBox Grid.Column="1" Grid.Row="0" x:Name="shortcutTextBox" PreviewKeyDown="shortcutTextBox_PreviewKeyDown"/>
         
         <Label Grid.Column="0" Grid.Row="1" Content="Server URL:" VerticalContentAlignment="Center" />
-        <TextBox Grid.Column="1" Grid.Row="1" x:Name="urlTextBox" TextChanged="urlTextBox_TextChanged" />
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="urlTextBox" TextChanged="textboxes_TextChanged" />
         
         <!-- Auth -->
         <CheckBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="6" Name="usesAuthCheckbox" Content="Server uses Auth" Checked="usesAuthCheckbox_Checked" Unchecked="usesAuthCheckbox_Unchecked" HorizontalContentAlignment="Right"/>
         
         <Label Grid.Column="0" Grid.Row="3" Content="Username:" />
-        <TextBox Grid.Column="1" Grid.Row="3" x:Name="usernameTextBox" TextChanged="usernameTextBox_TextChanged" />
+        <TextBox Grid.Column="1" Grid.Row="3" x:Name="usernameTextBox" TextChanged="textboxes_TextChanged" />
         
         <Label Grid.Column="0" Grid.Row="4" Content="Password:" />
         <PasswordBox Grid.Column="1" Grid.Row="4" x:Name="passwordTextBox" PasswordChanged="passwordTextBox_PasswordChanged" />

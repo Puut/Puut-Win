@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using MahApps.Metro.Controls;
 using Puut.Properties;
@@ -21,7 +22,7 @@ namespace Puut
         }
         #endregion
 
-        #region Load/Save
+        #region Load/Save Settings
         private void LoadSettings()
         {
             Settings s = Puut.Properties.Settings.Default;
@@ -46,13 +47,13 @@ namespace Puut
         }
         #endregion
 
-        #region Event handlers for UI changes
+        #region Event handlers for UI
         private void shortcutTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             this.HandleShortcutBox(e);
         }
 
-        private void urlTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void textboxes_TextChanged(object sender, TextChangedEventArgs e)
         {
             this.UpdateUserDataFields();
         }
@@ -63,10 +64,6 @@ namespace Puut
         private void usesAuthCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             UpdateUserDataFields();
-        }
-        private void usernameTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            this.UpdateUserDataFields();
         }
         private void passwordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
