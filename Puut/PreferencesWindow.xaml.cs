@@ -86,7 +86,7 @@ namespace Puut
             settingsChanged |= ( urlTextBox.Text != s.ServerURL );
             settingsChanged |= ( usesAuthCheckbox.IsChecked.Value != s.UsesAuth );
             settingsChanged |= ( usernameTextBox.Text != s.Username );
-            settingsChanged |= ( passwordTextBox.Password != s.Password );
+            settingsChanged |= ( passwordTextBox.Password != SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(s.Password)) );
 
             this.buttonApply.IsEnabled = settingsChanged;
         }
