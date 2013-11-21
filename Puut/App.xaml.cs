@@ -13,6 +13,9 @@ namespace Puut
         #region Init
         private void DoStartup()
         {
+            // to keep running
+            this.ShowInvisibleWindow();
+
             this.AddNotifyIcon();
 
             // only show preferences window if nothing is set yet (server url and/or shortcut)
@@ -41,6 +44,17 @@ namespace Puut
         #endregion
 
         #region Actions
+        private void ShowInvisibleWindow()
+        {
+            new Window()
+            {
+                Width = 0,
+                Height = 0,
+                WindowStyle = WindowStyle.None,
+                ShowInTaskbar = false,
+                ShowActivated = false
+            }.Show();
+        }
         private void ShowPreferenceWindow()
         {
             new PreferencesWindow().Show();
