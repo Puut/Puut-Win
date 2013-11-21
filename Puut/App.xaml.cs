@@ -40,7 +40,7 @@ namespace Puut
         {
             this.trayIcon = new System.Windows.Forms.NotifyIcon();
             this.trayIcon.Text = String.Format(Constants.TRAYICON_TEXT_FORMAT, Constants.APP_NAME, Constants.APP_VERSION());
-            this.trayIcon.Icon = Puut.Properties.Resources.puut_icon_32;
+            this.trayIcon.Icon = Puut.Properties.Resources.puut_icon;
 
             this.trayIcon.Visible = true;
         }

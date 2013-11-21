@@ -5,7 +5,7 @@
         Title="Puut Preferences" 
         Height="210"
         Width="300"
-        ResizeMode="NoResize" Icon="Images/Puut-Logo-64.png">
+        ResizeMode="NoResize" Icon="Images/puut.png">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
