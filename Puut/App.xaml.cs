@@ -39,7 +39,7 @@ namespace Puut
         private void AddNotifyIcon()
         {
             this.trayIcon = new System.Windows.Forms.NotifyIcon();
-            this.trayIcon.Text = Constants.APP_NAME;
+            this.trayIcon.Text = String.Format(Constants.TRAYICON_TEXT_FORMAT, Constants.APP_NAME, Constants.APP_VERSION());
             this.trayIcon.Icon = Puut.Properties.Resources.puut_icon;
 
             this.trayIcon.Visible = true;
