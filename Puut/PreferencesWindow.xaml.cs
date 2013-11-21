@@ -140,6 +140,8 @@ namespace Puut
         {
             // save settings
             SaveSettings();
+            // update ui
+            this.UpdateUserDataFields();
         }
     }
 }
