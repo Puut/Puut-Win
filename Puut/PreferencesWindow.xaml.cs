@@ -27,22 +27,22 @@ namespace Puut
         {
             Settings s = Puut.Properties.Settings.Default;
 
-            urlTextBox.Text = s.ServerURL;
-            usesAuthCheckbox.IsChecked = s.UsesAuth;
-            usernameTextBox.Text = s.Username;
-            passwordTextBox.Password = SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(s.Password));
-            shortcutTextBox.Text = s.Shortcut;
+            this.textBoxUrl.Text = s.ServerURL;
+            this.checkBoxUsesAuth.IsChecked = s.UsesAuth;
+            this.textBoxUsername.Text = s.Username;
+            this.textBoxPassword.Password = SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(s.Password));
+            this.textBoxShortcut.Text = s.Shortcut;
         }
 
         private void SaveSettings()
         {
             Settings s = Puut.Properties.Settings.Default;
 
-            s.ServerURL = urlTextBox.Text;
-            s.UsesAuth = usesAuthCheckbox.IsChecked.Value;
-            s.Username = usernameTextBox.Text;
-            s.Password = SecurityUtility.EncryptString(passwordTextBox.SecurePassword);
-            s.Shortcut = shortcutTextBox.Text;
+            s.ServerURL = this.textBoxUrl.Text;
+            s.UsesAuth = this.checkBoxUsesAuth.IsChecked.Value;
+            s.Username = this.textBoxUsername.Text;
+            s.Password = SecurityUtility.EncryptString(this.textBoxPassword.SecurePassword);
+            s.Shortcut = this.textBoxShortcut.Text;
             s.Save();
         }
         #endregion
@@ -90,13 +90,13 @@ namespace Puut
             Settings s = Puut.Properties.Settings.Default;
             bool settingsChanged = false;
 
-            usernameTextBox.IsEnabled = passwordTextBox.IsEnabled = ( usesAuthCheckbox.IsChecked.Value );
+            this.textBoxUsername.IsEnabled = this.textBoxPassword.IsEnabled = ( this.checkBoxUsesAuth.IsChecked.Value );
 
-            settingsChanged |= ( shortcutTextBox.Text != s.Shortcut );
-            settingsChanged |= ( urlTextBox.Text != s.ServerURL );
-            settingsChanged |= ( usesAuthCheckbox.IsChecked.Value != s.UsesAuth );
-            settingsChanged |= ( usernameTextBox.Text != s.Username );
-            settingsChanged |= ( passwordTextBox.Password != SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(s.Password)) );
+            settingsChanged |= ( this.textBoxShortcut.Text != s.Shortcut );
+            settingsChanged |= ( this.textBoxUrl.Text != s.ServerURL );
+            settingsChanged |= ( this.checkBoxUsesAuth.IsChecked.Value != s.UsesAuth );
+            settingsChanged |= ( this.textBoxUsername.Text != s.Username );
+            settingsChanged |= ( this.textBoxPassword.Password != SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(s.Password)) );
 
             this.buttonApply.IsEnabled = settingsChanged;
         }
@@ -135,7 +135,7 @@ namespace Puut
             shortcutText.Append(key.ToString());
 
             // Update the text box.
-            shortcutTextBox.Text = shortcutText.ToString();
+            this.textBoxShortcut.Text = shortcutText.ToString();
 
             this.UpdateUserDataFields();
         }
