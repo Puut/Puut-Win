@@ -9,6 +9,7 @@ namespace Puut
     public partial class App : Application
     {
         private System.Windows.Forms.NotifyIcon trayIcon = null;
+        private PreferencesWindow preferencesWindow = null;
 
         #region Init
         private void DoStartup()
@@ -35,10 +36,15 @@ namespace Puut
 
         private void AddNotifyIcon()
         {
+            // setup icon
             this.trayIcon = new System.Windows.Forms.NotifyIcon();
             this.trayIcon.Text = String.Format(Constants.TRAYICON_TEXT_FORMAT, Constants.APP_NAME, Constants.APP_VERSION());
             this.trayIcon.Icon = Puut.Properties.Resources.puut_icon;
 
+            // setup handlers
+            this.trayIcon.DoubleClick += trayIcon_DoubleClick;
+
+            // show icon
             this.trayIcon.Visible = true;
         }
         #endregion
@@ -57,7 +63,12 @@ namespace Puut
         }
         private void ShowPreferenceWindow()
         {
-            new PreferencesWindow().Show();
+            if ( this.preferencesWindow == null )
+            {
+                this.preferencesWindow = new PreferencesWindow();
+                this.preferencesWindow.Closed += preferencesWindow_Closed;
+                this.preferencesWindow.Show();
+            }
         }
         #endregion
 
@@ -65,6 +76,15 @@ namespace Puut
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             this.DoStartup();
+        }
+        private void preferencesWindow_Closed(object sender, EventArgs e)
+        {
+            this.preferencesWindow = null;
+        }
+
+        private void trayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.ShowPreferenceWindow();
         }
         #endregion
     }
