@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Puut Preferences" 
         Height="215" Width="300" ResizeMode="NoResize"
-        Icon="Images/puut.png" ShowInTaskbar="False">
+        Icon="Images/puut.png">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
