@@ -6,7 +6,7 @@ namespace Puut
     /// <summary>
     /// Interaktionslogik für "App.xaml"
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, IDisposable
     {
         private Window stubWindow = null;
 
@@ -165,5 +165,24 @@ namespace Puut
             this.Shutdown();
         }
         #endregion
+
+        #region IDisposable
+        public void Dispose()
+        {
+            this.Dispose(true);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if ( disposing )
+            {
+                this.trayIcon.Dispose();
+            }
+        }
+        ~App()
+        {
+            this.Dispose(false);
+        }
+        #endregion
+
     }
 }
