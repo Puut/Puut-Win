@@ -8,6 +8,8 @@ namespace Puut
     /// </summary>
     public partial class App : Application
     {
+        private Window stubWindow = null;
+
         private System.Windows.Forms.NotifyIcon trayIcon = null;
         private PreferencesWindow preferencesWindow = null;
 
@@ -24,6 +26,8 @@ namespace Puut
             {
                 this.ShowPreferenceWindow();
             }
+
+            this.RegisterKeyHook();
         }
         /// <summary>
         /// Returns whether all basic information was set, so that we could try to puut files.
@@ -73,19 +77,30 @@ namespace Puut
 
             return contextMenu;
         }
+
+        private void RegisterKeyHook()
+        {
+            HotKeyHelper.HotKeyPressed += HotKeyHelper_HotKeyPressed;
+
+            const uint VK_F5 = 0x74;
+            const uint MOD_CTRL = 0x0002;
+
+            HotKeyHelper.AddGlobalKeyHook(this.stubWindow, VK_F5, MOD_CTRL);
+        }
         #endregion
 
         #region Actions
         private void ShowInvisibleWindow()
         {
-            new Window()
+            this.stubWindow = new Window()
             {
                 Width = 0,
                 Height = 0,
                 WindowStyle = WindowStyle.None,
                 ShowInTaskbar = false,
                 ShowActivated = false
-            }.Show();
+            };
+            this.stubWindow.Show();
         }
         private void ShowPreferenceWindow()
         {
@@ -115,6 +130,11 @@ namespace Puut
         private void itemExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void HotKeyHelper_HotKeyPressed(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hotkey pressed.");
         }
         #endregion
     }
