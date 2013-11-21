@@ -23,6 +23,8 @@ namespace Puut
 
         #region UI Constants
         public const String TRAYICON_TEXT_FORMAT = "{0} - v{1}";
+
+        public const String SHOW_PREFERENCES = "Show preferences";
         #endregion
     }
 }

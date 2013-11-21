@@ -38,14 +38,37 @@ namespace Puut
         {
             // setup icon
             this.trayIcon = new System.Windows.Forms.NotifyIcon();
-            this.trayIcon.Text = String.Format(Constants.TRAYICON_TEXT_FORMAT, Constants.APP_NAME, Constants.APP_VERSION());
+            this.trayIcon.Text = Constants.APP_NAME;
             this.trayIcon.Icon = Puut.Properties.Resources.puut_icon;
+
+            // setup icon's actions
+            this.trayIcon.ContextMenu = this.BuildNotifyIconContextMenu();
 
             // setup handlers
             this.trayIcon.DoubleClick += trayIcon_DoubleClick;
 
             // show icon
             this.trayIcon.Visible = true;
+        }
+        private System.Windows.Forms.ContextMenu BuildNotifyIconContextMenu()
+        {
+            System.Windows.Forms.ContextMenu contextMenu = new System.Windows.Forms.ContextMenu();
+
+            System.Windows.Forms.MenuItem itemName = new System.Windows.Forms.MenuItem()
+            {
+                Text = String.Format(Constants.TRAYICON_TEXT_FORMAT, Constants.APP_NAME, Constants.APP_VERSION()),
+                Enabled = false
+            };
+            System.Windows.Forms.MenuItem itemShowPreferences = new System.Windows.Forms.MenuItem()
+            {
+                Text = Constants.SHOW_PREFERENCES
+            };
+            itemShowPreferences.Click += itemShowPreferences_Click;
+
+            contextMenu.MenuItems.Add(itemName);
+            contextMenu.MenuItems.Add(itemShowPreferences);
+
+            return contextMenu;
         }
         #endregion
 
@@ -83,6 +106,10 @@ namespace Puut
         }
 
         private void trayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.trayIcon.ContextMenu.Show(this.trayIcon, this.trayIcon.poi)
+        }
+        private void itemShowPreferences_Click(object sender, EventArgs e)
         {
             this.ShowPreferenceWindow();
         }
