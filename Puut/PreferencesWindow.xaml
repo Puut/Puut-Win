@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Puut Preferences" 
-        Height="210" Width="300" ResizeMode="NoResize"
+        Height="215" Width="300" ResizeMode="NoResize"
         Icon="Images/puut.png" ShowInTaskbar="False">
     <Window.Resources>
         <ResourceDictionary>
