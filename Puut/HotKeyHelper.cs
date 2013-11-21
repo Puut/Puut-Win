@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -12,6 +8,7 @@ namespace Puut
     public class HotKeyHelper
     {
         // see http://stackoverflow.com/questions/11377977/global-hotkeys-in-wpf-working-from-every-window
+        #region Event
         public delegate void HotKeyPressedEventHandler(object sender, EventArgs e);
         public static event HotKeyPressedEventHandler HotKeyPressed;
         private static void OnHotKeyPressed()
@@ -21,10 +18,13 @@ namespace Puut
                 HotKeyHelper.HotKeyPressed(null, new EventArgs());
             }
         }
+        #endregion
 
+        #region Helper variables
         private static HwndSource _source = null;
         private const int WM_HOTKEY = 0x0312;
         private const int HOTKEY_ID = 9000;
+        #endregion
 
         #region Key: Add
         /// <summary>
@@ -43,17 +43,17 @@ namespace Puut
             WindowInteropHelper helper = new WindowInteropHelper(window);
             _source = HwndSource.FromHwnd(helper.Handle);
             _source.AddHook(HotKeyHelper.HwndHook);
+
             HotKeyHelper.RegisterHotKey(window, vk, modifierKeyID);
         }
         private static void RegisterHotKey(Window window, uint vk, uint mod)
         {
             var helper = new WindowInteropHelper(window);
-            /* const uint VK_F10 = 0x79;
-            const uint MOD_CTRL = 0x0002; */
             if ( !NativeMethods.RegisterHotKey(helper.Handle, HOTKEY_ID, mod, vk) )
             {
                 // handle error
                 throw new COMException("Native RegisterHotKey failed.");
+                // more or less :D
             }
         }
         #endregion
@@ -87,6 +87,7 @@ namespace Puut
                     }
                     break;
             }
+
             return IntPtr.Zero;
         }
         #endregion
