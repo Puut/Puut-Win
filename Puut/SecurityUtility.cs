@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Security;
 
 namespace Puut
 {
-    class SecurityUtility
+    public class SecurityUtility
     {
         static byte[] entropy = System.Text.Encoding.Unicode.GetBytes("Heinz Helmut, er ist beste!");
 
