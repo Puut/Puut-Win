@@ -133,7 +133,7 @@ namespace Puut
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">Event args.</param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void buttonApply_Click(object sender, RoutedEventArgs e)
         {
             // save settings
             SaveSettings();
