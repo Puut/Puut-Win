@@ -147,9 +147,15 @@ namespace Puut
         }
         private void preferencesWindow_Closed(object sender, EventArgs e)
         {
+            // invalidate object
             this.preferencesWindow = null;
         }
+        private void HotKeyHelper_HotKeyPressed(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hotkey pressed.");
+        }
 
+        // Context menu of tray icon
         private void itemShowPreferences_Click(object sender, EventArgs e)
         {
             this.ShowPreferenceWindow();
@@ -157,11 +163,6 @@ namespace Puut
         private void itemExit_Click(object sender, EventArgs e)
         {
             this.Shutdown();
-        }
-
-        private void HotKeyHelper_HotKeyPressed(object sender, EventArgs e)
-        {
-            Console.WriteLine("Hotkey pressed.");
         }
         #endregion
     }
