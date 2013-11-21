@@ -16,8 +16,9 @@ namespace Puut
         #region Init
         private void DoStartup()
         {
-            // Add event handler
+            // Add event handlers
             this.Exit += App_Exit;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             // to keep running
             this.ShowInvisibleWindow();
@@ -133,6 +134,13 @@ namespace Puut
         #endregion
 
         #region Events
+        // Application wide
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception ex = (Exception)e.ExceptionObject;
+
+            MessageBox.Show(ex.ToString(), "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             this.DoStartup();
