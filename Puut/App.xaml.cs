@@ -61,9 +61,15 @@ namespace Puut
                 Text = Constants.SHOW_PREFERENCES
             };
             itemShowPreferences.Click += itemShowPreferences_Click;
+            System.Windows.Forms.MenuItem itemExit = new System.Windows.Forms.MenuItem()
+            {
+                Text = Constants.EXIT
+            };
+            itemExit.Click += itemExit_Click;
 
             contextMenu.MenuItems.Add(itemName);
             contextMenu.MenuItems.Add(itemShowPreferences);
+            contextMenu.MenuItems.Add(itemExit);
 
             return contextMenu;
         }
@@ -105,6 +111,10 @@ namespace Puut
         private void itemShowPreferences_Click(object sender, EventArgs e)
         {
             this.ShowPreferenceWindow();
+        }
+        private void itemExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
         #endregion
     }
