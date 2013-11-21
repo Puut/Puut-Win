@@ -22,7 +22,6 @@ namespace Puut
             }
         }
 
-        private static Window window = null;
         private static HwndSource _source = null;
         private const int WM_HOTKEY = 0x0312;
         private const int HOTKEY_ID = 9000;
@@ -45,8 +44,6 @@ namespace Puut
             _source = HwndSource.FromHwnd(helper.Handle);
             _source.AddHook(HotKeyHelper.HwndHook);
             HotKeyHelper.RegisterHotKey(window, vk, modifierKeyID);
-
-            HotKeyHelper.window = window;
         }
         private static void RegisterHotKey(Window window, uint vk, uint mod)
         {
@@ -61,13 +58,12 @@ namespace Puut
         }
         #endregion
         #region Key: Remove
-        public static void RemoveGlobalKeyHook()
+        public static void RemoveGlobalKeyHook(Window window)
         {
             _source.RemoveHook(HotKeyHelper.HwndHook);
             _source = null;
 
-            HotKeyHelper.UnregisterHotKey(HotKeyHelper.window);
-            HotKeyHelper.window = null;
+            HotKeyHelper.UnregisterHotKey(window);
         }
         private static void UnregisterHotKey(Window window)
         {

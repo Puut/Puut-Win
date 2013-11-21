@@ -16,6 +16,9 @@ namespace Puut
         #region Init
         private void DoStartup()
         {
+            // Add event handler
+            this.Exit += App_Exit;
+
             // to keep running
             this.ShowInvisibleWindow();
 
@@ -29,6 +32,12 @@ namespace Puut
 
             this.RegisterKeyHook();
         }
+        private void App_Exit(object sender, ExitEventArgs e)
+        {
+            // we need to clean up!
+            this.UnregisterKeyHook();
+        }
+
         /// <summary>
         /// Returns whether all basic information was set, so that we could try to puut files.
         /// </summary>
@@ -78,6 +87,7 @@ namespace Puut
             return contextMenu;
         }
 
+        #region Keyboard Hotkey
         private void RegisterKeyHook()
         {
             HotKeyHelper.HotKeyPressed += HotKeyHelper_HotKeyPressed;
@@ -85,8 +95,17 @@ namespace Puut
             const uint VK_F5 = 0x74;
             const uint MOD_CTRL = 0x0002;
 
-            HotKeyHelper.AddGlobalKeyHook(this.stubWindow, VK_F5, MOD_CTRL);
+            this.SetKeyHook(VK_F5, MOD_CTRL);
         }
+        private void SetKeyHook(uint vkCode, uint modKeys)
+        {
+            HotKeyHelper.AddGlobalKeyHook(this.stubWindow, vkCode, modKeys);
+        }
+        private void UnregisterKeyHook()
+        {
+            HotKeyHelper.RemoveGlobalKeyHook(this.stubWindow);
+        }
+        #endregion
         #endregion
 
         #region Actions
