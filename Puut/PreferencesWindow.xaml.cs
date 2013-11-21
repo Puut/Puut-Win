@@ -140,8 +140,6 @@ namespace Puut
         {
             // save settings
             SaveSettings();
-            // and exit
-            this.Close();
-        } 
+        }
     }
 }
