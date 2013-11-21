@@ -44,9 +44,6 @@ namespace Puut
             // setup icon's actions
             this.trayIcon.ContextMenu = this.BuildNotifyIconContextMenu();
 
-            // setup handlers
-            this.trayIcon.DoubleClick += trayIcon_DoubleClick;
-
             // show icon
             this.trayIcon.Visible = true;
         }
@@ -105,10 +102,6 @@ namespace Puut
             this.preferencesWindow = null;
         }
 
-        private void trayIcon_DoubleClick(object sender, EventArgs e)
-        {
-            this.trayIcon.ContextMenu.Show(this.trayIcon, this.trayIcon.poi)
-        }
         private void itemShowPreferences_Click(object sender, EventArgs e)
         {
             this.ShowPreferenceWindow();
