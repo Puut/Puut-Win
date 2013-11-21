@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </Window.Resources>
     
-    <Grid>
+    <Grid Margin="6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
