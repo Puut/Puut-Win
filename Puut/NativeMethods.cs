@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Puut
 {
-    public sealed class NativeMethods
+    internal sealed class NativeMethods
     {
         [DllImport("user32.dll")]
         public static extern bool RegisterHotKey(
