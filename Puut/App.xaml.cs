@@ -148,7 +148,7 @@ namespace Puut
         }
         private void itemExit_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            this.Shutdown();
         }
 
         private void HotKeyHelper_HotKeyPressed(object sender, EventArgs e)
