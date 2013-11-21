@@ -16,9 +16,8 @@ namespace Puut
         {
             InitializeComponent();
 
-            LoadSettings();
-
-            UpdateUserDataFields();
+            this.LoadSettings();
+            this.UpdateUserDataFields();
         }
         #endregion
 
@@ -50,41 +49,7 @@ namespace Puut
         #region Event handlers for UI changes
         private void shortcutTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            // The text box grabs all input.
-            e.Handled = true;
-
-            // Fetch the actual shortcut key.
-            Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
-
-            // Ignore modifier keys.
-            if (key == Key.LeftShift || key == Key.RightShift
-                || key == Key.LeftCtrl || key == Key.RightCtrl
-                || key == Key.LeftAlt || key == Key.RightAlt
-                || key == Key.LWin || key == Key.RWin)
-            {
-                return;
-            }
-
-            // Build the shortcut key name.
-            StringBuilder shortcutText = new StringBuilder();
-            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
-            {
-                shortcutText.Append("Ctrl+");
-            }
-            if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0)
-            {
-                shortcutText.Append("Shift+");
-            }
-            if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0)
-            {
-                shortcutText.Append("Alt+");
-            }
-            shortcutText.Append(key.ToString());
-
-            // Update the text box.
-            shortcutTextBox.Text = shortcutText.ToString();
-
-            this.UpdateUserDataFields();
+            this.HandleShortcutBox(e);
         }
 
         private void urlTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -107,7 +72,9 @@ namespace Puut
         {
             this.UpdateUserDataFields();
         }
+        #endregion
 
+        #region UI
         private void UpdateUserDataFields()
         {
             Settings s = Puut.Properties.Settings.Default;
@@ -122,6 +89,45 @@ namespace Puut
             settingsChanged |= ( passwordTextBox.Password != s.Password );
 
             this.buttonApply.IsEnabled = settingsChanged;
+        }
+
+        private void HandleShortcutBox(KeyEventArgs e)
+        {
+            // The text box grabs all input.
+            e.Handled = true;
+
+            // Fetch the actual shortcut key.
+            Key key = ( e.Key == Key.System ? e.SystemKey : e.Key );
+
+            // Ignore modifier keys.
+            if ( key == Key.LeftShift || key == Key.RightShift
+                || key == Key.LeftCtrl || key == Key.RightCtrl
+                || key == Key.LeftAlt || key == Key.RightAlt
+                || key == Key.LWin || key == Key.RWin )
+            {
+                return;
+            }
+
+            // Build the shortcut key name.
+            StringBuilder shortcutText = new StringBuilder();
+            if ( ( Keyboard.Modifiers & ModifierKeys.Control ) != 0 )
+            {
+                shortcutText.Append("Ctrl+");
+            }
+            if ( ( Keyboard.Modifiers & ModifierKeys.Shift ) != 0 )
+            {
+                shortcutText.Append("Shift+");
+            }
+            if ( ( Keyboard.Modifiers & ModifierKeys.Alt ) != 0 )
+            {
+                shortcutText.Append("Alt+");
+            }
+            shortcutText.Append(key.ToString());
+
+            // Update the text box.
+            shortcutTextBox.Text = shortcutText.ToString();
+
+            this.UpdateUserDataFields();
         }
         #endregion
 
