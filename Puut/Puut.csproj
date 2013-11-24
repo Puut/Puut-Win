@@ -70,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Capture\CaptureHelper.cs" />
+    <Compile Include="Capture\Screenshot.cs" />
+    <Compile Include="Capture\Upload.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="HotKeyHelper.cs" />
     <Compile Include="NativeMethods.cs" />

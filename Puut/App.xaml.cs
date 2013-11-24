@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows;
+using Puut.Capture;
 
 namespace Puut
 {
@@ -131,6 +133,14 @@ namespace Puut
                 this.preferencesWindow.Show();
             }
         }
+
+        private void TakeScreenshot()
+        {
+            Image img = Screenshot.CaptureScreen();
+            Upload upload = new Upload(img);
+
+            upload.DoUpload();
+        }
         #endregion
 
         #region Events
@@ -153,6 +163,7 @@ namespace Puut
         private void HotKeyHelper_HotKeyPressed(object sender, EventArgs e)
         {
             Console.WriteLine("Hotkey pressed.");
+            this.TakeScreenshot();
         }
 
         // Context menu of tray icon
@@ -183,6 +194,5 @@ namespace Puut
             this.Dispose(false);
         }
         #endregion
-
     }
 }
