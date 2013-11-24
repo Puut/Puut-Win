@@ -137,9 +137,9 @@ namespace Puut
         private void TakeScreenshot()
         {
             Image img = Screenshot.CaptureScreen();
-            Upload upload = new Upload(img);
+            Upload upload = new Upload();
 
-            upload.DoUpload();
+            upload.DoUpload(img);
         }
         #endregion
 
@@ -159,6 +159,8 @@ namespace Puut
         {
             // invalidate object
             this.preferencesWindow = null;
+
+            // TODO: update hotkey
         }
         private void HotKeyHelper_HotKeyPressed(object sender, EventArgs e)
         {
