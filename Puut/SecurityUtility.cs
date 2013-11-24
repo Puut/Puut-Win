@@ -16,7 +16,7 @@ namespace Puut
             return Convert.ToBase64String(encryptedData);
         }
 
-        public static SecureString DecryptString(string encryptedData)
+        public static SecureString DecryptString(String encryptedData)
         {
             try
             {

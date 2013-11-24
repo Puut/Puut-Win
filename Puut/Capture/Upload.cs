@@ -15,38 +15,38 @@ namespace Puut.Capture
     {
         private static readonly Encoding ENCODING = Encoding.UTF8;
 
-        public async void DoUpload(Image image)
+        public async void DoUpload(Image image, String username, String password)
         {
             String host = Puut.Properties.Settings.Default.ServerURL;
             String url = Path.Combine(host, "upload").Replace(Path.DirectorySeparatorChar, '/');
+            Console.WriteLine("Käsewurst");
 
-            String response = await this.DoMultipartPost(url, image);
-
-            Console.WriteLine(response);
+            HttpResponseMessage response = await this.DoMultipartPost(url, image, username, password);
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
         }
 
-        private async Task<String> DoMultipartPost(String url, Image image)
+        private async Task<HttpResponseMessage> DoMultipartPost(String url, Image image)
         {
             return await this.DoMultipartPost(url, image, null, null);
         }
-        private async Task<String> DoMultipartPost(String url, Image image, String username, String password)
+        private async Task<HttpResponseMessage> DoMultipartPost(String url, Image image, String username, String password)
         {
             ImageConverter converter = new ImageConverter();
             byte[] imageData = (byte[])converter.ConvertTo(image, typeof(byte[]));
 
             return await this.DoMultipartPost(url, imageData, username, password);
         }
-        private async Task<String> DoMultipartPost(String url, byte[] image, String username, String password)
+        private async Task<HttpResponseMessage> DoMultipartPost(String url, byte[] image, String username, String password)
         {
             HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password)));
 
-            MultipartContent content = new MultipartContent("mixed", "Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture));
-            content.Add(new StreamContent(new MemoryStream(image)));
+            var requestContent = new MultipartFormDataContent();
+            var imageContent = new ByteArrayContent(image);
+            requestContent.Add(imageContent, "image", "image.png");
 
-            HttpResponseMessage response = await client.PostAsync(url, content);
-            String s = await response.Content.ReadAsStringAsync();
 
-            return s;
+            return await client.PostAsync(url, requestContent);
         }
     }
 }
