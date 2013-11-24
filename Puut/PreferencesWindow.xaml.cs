@@ -77,6 +77,12 @@ namespace Puut
         /// <param name="e">Event args.</param>
         private void buttonApply_Click(object sender, RoutedEventArgs e)
         {
+            this.textBoxUrl.Text = this.textBoxUrl.Text.ToLower();
+            if ( !this.textBoxUrl.Text.StartsWith("http://") && !this.textBoxUrl.Text.StartsWith("https://") )
+            {
+                this.textBoxUrl.Text = "http://" + this.textBoxUrl.Text;
+            }
+
             // save settings
             SaveSettings();
             // update ui
