@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -43,6 +44,8 @@ namespace Puut.Capture
 
             var requestContent = new MultipartFormDataContent();
             var imageContent = new ByteArrayContent(image);
+            imageContent.Headers.ContentType =
+                MediaTypeHeaderValue.Parse("image/png");
             requestContent.Add(imageContent, "image", "image.png");
 
 
