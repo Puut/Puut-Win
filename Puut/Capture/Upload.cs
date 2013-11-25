@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -39,9 +40,22 @@ namespace Puut.Capture
         private async Task<String> DoMultipartPost(String url, byte[] image, String username, String password)
         {
             HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            MultipartContent content = new MultipartContent("mixed", "Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture));
-            content.Add(new StreamContent(new MemoryStream(image)));
+            MultipartFormDataContent content = new MultipartFormDataContent();
+            ByteArrayContent file = new ByteArrayContent(image);
+            file.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                Name = "image",
+                FileName = "image",
+                FileNameStar = "image",
+                Size = image.LongLength
+            };
+            file.Headers.ContentLength = image.LongLength;
+            file.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+            content.Add(file);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            content.Headers.ContentEncoding.Add("utf-8");
 
             HttpResponseMessage response = await client.PostAsync(url, content);
             String s = await response.Content.ReadAsStringAsync();
