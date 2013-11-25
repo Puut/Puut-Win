@@ -139,7 +139,14 @@ namespace Puut
             Image img = Screenshot.CaptureScreen();
             Upload upload = new Upload();
 
-            upload.DoUpload(img);
+            String username = null,
+                password = null;
+            if ( Puut.Properties.Settings.Default.UsesAuth )
+            {
+                username = Puut.Properties.Settings.Default.Username;
+                password = SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(Puut.Properties.Settings.Default.Password));
+            }
+            upload.DoUpload(img, username, password);
         }
         #endregion
 
