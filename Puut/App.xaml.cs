@@ -137,6 +137,10 @@ namespace Puut
         private void TakeScreenshot()
         {
             Image img = Screenshot.CaptureScreen();
+            this.UploadScreenshot(img);
+        }
+        private void UploadScreenshot(Image image)
+        {
             Upload upload = new Upload();
 
             String username = null,
@@ -146,7 +150,7 @@ namespace Puut
                 username = Puut.Properties.Settings.Default.Username;
                 password = SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(Puut.Properties.Settings.Default.Password));
             }
-            upload.DoUpload(img, username, password);
+            upload.DoUpload(image, username, password);
         }
         #endregion
 
