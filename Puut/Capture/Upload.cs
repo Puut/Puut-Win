@@ -16,7 +16,6 @@ namespace Puut.Capture
             String host = Puut.Properties.Settings.Default.ServerURL;
 
             IRestResponse response = await this.DoMultipartPost(host, "upload", image, username, password);
-            Console.WriteLine(response.Content);
             String id = this.ParseUploadResponse(response);
 
             return id;
