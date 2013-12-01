@@ -165,24 +165,30 @@ namespace Puut
 
             Console.WriteLine("Uploading image...");
             String id = await upload.DoUpload(image, username, password);
-
             this.SetClipboardToId(id);
         }
         private void SetClipboardToId(String id)
         {
-            String host = Puut.Properties.Settings.Default.ServerURL;
-            // to make Path.Combine use this
-            if ( !host.EndsWith("/") )
-                host += "/";
+            if ( !String.IsNullOrEmpty(id) )
+            {
+                String host = Puut.Properties.Settings.Default.ServerURL;
+                // to make Path.Combine use this
+                if ( !host.EndsWith("/") )
+                    host += "/";
 
-            String url = Path.Combine(host, id);
-            url += ".png";
-            Console.WriteLine(url);
+                String url = Path.Combine(host, id);
+                url += ".png";
+                Console.WriteLine(url);
 
-            // Clipboard.SetText(url); // crashing with CLIPBRD_E_CANT_OPEN
-            Clipboard.SetDataObject(url);
+                // Clipboard.SetText(url); // crashing with CLIPBRD_E_CANT_OPEN
+                Clipboard.SetDataObject(url);
 
-            this.trayIcon.ShowBalloonTip(Constants.TOOLTIP_TIMEOUT, Constants.TOOLTIP_UPLOAD_TITLE, Constants.TOOLTIP_UPLOAD_BODY, Constants.TOOLTIP_UPLOAD_ICON);
+                this.trayIcon.ShowBalloonTip(Constants.TOOLTIP_TIMEOUT, Constants.TOOLTIP_UPLOAD_TITLE, Constants.TOOLTIP_UPLOAD_BODY, Constants.TOOLTIP_UPLOAD_ICON);
+            }
+            else
+            {
+                this.trayIcon.ShowBalloonTip(Constants.TOOLTIP_TIMEOUT, Constants.TOOLTIP_UPLOADERROR_TITLE, Constants.TOOLTIP_UPLOADERROR_BODY, Constants.TOOLTIP_UPLOADERROR_ICON);
+            }
         }
         #endregion
 

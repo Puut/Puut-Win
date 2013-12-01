@@ -31,6 +31,9 @@ namespace Puut
         public const String TOOLTIP_UPLOAD_TITLE = "Screenshot uploaded";
         public const String TOOLTIP_UPLOAD_BODY = "The link was put into your clipboard.";
         public static readonly System.Windows.Forms.ToolTipIcon TOOLTIP_UPLOAD_ICON = System.Windows.Forms.ToolTipIcon.Info;
+        public const String TOOLTIP_UPLOADERROR_TITLE = "Upload error";
+        public const String TOOLTIP_UPLOADERROR_BODY = "There was an error uploading the screenshot to the server.";
+        public static readonly System.Windows.Forms.ToolTipIcon TOOLTIP_UPLOADERROR_ICON = System.Windows.Forms.ToolTipIcon.Error;
         #endregion
     }
 }
