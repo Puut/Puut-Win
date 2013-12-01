@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows;
 using Puut.Capture;
 
@@ -136,6 +137,8 @@ namespace Puut
 
         private void TakeScreenshot()
         {
+            Console.WriteLine("Capturing the entire screen...");
+
             Image img = Screenshot.CaptureScreen();
             this.UploadScreenshot(img);
         }
@@ -159,7 +162,25 @@ namespace Puut
                 username = Puut.Properties.Settings.Default.Username;
                 password = SecurityUtility.ToInsecureString(SecurityUtility.DecryptString(Puut.Properties.Settings.Default.Password));
             }
-            upload.DoUpload(image, username, password);
+
+            Console.WriteLine("Uploading image...");
+            String id = await upload.DoUpload(image, username, password);
+
+            this.SetClipboardToId(id);
+        }
+        private void SetClipboardToId(String id)
+        {
+            String host = Puut.Properties.Settings.Default.ServerURL;
+            // to make Path.Combine use this
+            if ( !host.EndsWith("/") )
+                host += "/";
+
+            String url = Path.Combine(host, id);
+            url += ".png";
+            Console.WriteLine(url);
+
+            // Clipboard.SetText(url); // crashing with CLIPBRD_E_CANT_OPEN
+            Clipboard.SetDataObject(url);
         }
         #endregion
 
