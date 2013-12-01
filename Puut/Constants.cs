@@ -26,6 +26,11 @@ namespace Puut
 
         public const String SHOW_PREFERENCES = "Show preferences";
         public const String EXIT = "Exit";
+
+        public const int TOOLTIP_TIMEOUT = 3500;
+        public const String TOOLTIP_UPLOAD_TITLE = "Screenshot uploaded";
+        public const String TOOLTIP_UPLOAD_BODY = "The link was put into your clipboard.";
+        public static readonly System.Windows.Forms.ToolTipIcon TOOLTIP_UPLOAD_ICON = System.Windows.Forms.ToolTipIcon.Info;
         #endregion
     }
 }

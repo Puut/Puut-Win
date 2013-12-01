@@ -181,6 +181,8 @@ namespace Puut
 
             // Clipboard.SetText(url); // crashing with CLIPBRD_E_CANT_OPEN
             Clipboard.SetDataObject(url);
+
+            this.trayIcon.ShowBalloonTip(Constants.TOOLTIP_TIMEOUT, Constants.TOOLTIP_UPLOAD_TITLE, Constants.TOOLTIP_UPLOAD_BODY, Constants.TOOLTIP_UPLOAD_ICON);
         }
         #endregion
 
