@@ -139,7 +139,16 @@ namespace Puut
             Image img = Screenshot.CaptureScreen();
             this.UploadScreenshot(img);
         }
-        private void UploadScreenshot(Image image)
+        private void TakeRectangluarScreenshot()
+        {
+            Rectangle rect = new Rectangle();
+
+            Console.WriteLine("Capturing rectangle " + rect + " ...");
+
+            Image img = Screenshot.CaptureRectangle(rect);
+            this.UploadScreenshot(img);
+        }
+        private async void UploadScreenshot(Image image)
         {
             Upload upload = new Upload();
 
