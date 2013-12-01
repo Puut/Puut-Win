@@ -143,8 +143,8 @@ namespace Puut
         {
             Upload upload = new Upload();
 
-            String username = null,
-                password = null;
+            String username = null;
+            String password = null;
             if ( Puut.Properties.Settings.Default.UsesAuth )
             {
                 username = Puut.Properties.Settings.Default.Username;
