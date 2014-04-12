@@ -15,9 +15,7 @@ namespace Puut
         public static Version GetAppVersion()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-            return new Version(fvi.FileVersion);
+            return assembly.GetName().Version;
         }
         #endregion
 
